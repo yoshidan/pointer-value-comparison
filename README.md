@@ -39,18 +39,20 @@ ok      github.com/yoshidan/pointer-value-comparison    29.760s
 * `for i := range value { attr := (&value[i]).Attr }` is better than `for i, v := range value { attr := v.Attr }` when looping through the value slice.
 
 ``` 
-    // get value to avoid heap allocation of slice elements.
-    values := repository.FindAll()
+    // Get value slice to avoid heap allocation of slice elements.
+    // In some cases, memory allocation can be avoided even if FindAll returns pointer slice by `Escape Analysis`.
+    var values []Sample
+    values = repository.FindAll() 
     
-    // only 1 allocation
+    // Only 1 allocation
     ptrs := make([]*Sample, len(values)
     
-    // make slice without copy.
+    // Make pointer slice without copy element value.
     for i := range values {
         ptrs[i] = &values[i]
     }
     
-    // use ptrs instead of values to avoid copy.
+    // Use ptrs instead of values to avoid copy element value.
     UseSlice(ptrs) 
     UseSlice(ptrs) 
     UseSlice(ptrs) 
