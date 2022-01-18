@@ -20,6 +20,11 @@ Benchmark_GetUnitValue-16               111116719954           77.39 ns/op   0 B
 3Benchmark_CopySlicePtr-16              333324827012           47.50 ns/op   0 B/op        0 allocs/op
 3Benchmark_AvoidSliceValueCopy-16       333324841756           47.00 ns/op   0 B/op        0 allocs/op
 
+3Benchmark_UseSliceValueWithCopy-16     333   84530            14263 ns/op   21760 B/op    2 allocs/op
+3Benchmark_UseSliceValueWithoutCopy-16  333   98920            12616 ns/op   13184 B/op    3 allocs/op
+3Benchmark_UseSlicePtr-16               333   71094            16212 ns/op   13824 B/op    146 allocs/op
+
+
 PASS
 ok      github.com/yoshidan/pointer-value-comparison        12.077s
 ```

@@ -75,7 +75,6 @@ func Benchmark_GetSlicePtrAndCopy(b *testing.B) {
 func Benchmark_CopySliceValue(b *testing.B) {
 	target := NewValueSampleRepository()
 	value, _ := target.FindBySampleId(1)
-	b.ResetTimer()
 	var h int64
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
@@ -102,13 +101,52 @@ func Benchmark_CopySlicePtr(b *testing.B) {
 func Benchmark_AvoidSliceValueCopy(b *testing.B) {
 	target := NewValueSampleRepository()
 	value, _ := target.FindBySampleId(1)
-	b.ResetTimer()
 	var h int64
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		for j := range value {
 			h = (&value[j]).Quantity
 		}
+	}
+	print(h)
+}
+
+func Benchmark_UseSliceValueWithCopy(b *testing.B) {
+	target := NewValueSampleRepository()
+	var h int64
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		value, _ := target.FindBySampleId(1)
+		v := FilterValue(value)
+		h = (&v[0]).Quantity
+	}
+	print(h)
+}
+
+func Benchmark_UseSliceValueWithoutCopy(b *testing.B) {
+	target := NewValueSampleRepository()
+	var h int64
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		value, _ := target.FindBySampleId(1)
+		ptr := make([]*Sample, len(value))
+		for j := range value {
+			ptr[j] = &value[j]
+		}
+		v := FilterPtr(ptr)
+		h = v[0].Quantity
+	}
+	print(h)
+}
+
+func Benchmark_UseSlicePtr(b *testing.B) {
+	target := NewPtrSampleRepository()
+	var h int64
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		ptr, _ := target.FindBySampleId(1)
+		v := FilterPtr(ptr)
+		h = v[0].Quantity
 	}
 	print(h)
 }
