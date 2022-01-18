@@ -25,7 +25,7 @@ Benchmark_SerializeSlicePtrWithGoJson-16                   10000            1032
 Benchmark_DeserializeSliceValueWithStandardJson-16          4538            239224 ns/op            9466 B/op        428 allocs/op
 Benchmark_DeserializeSlicePtrWithStandardJson-16            4887            238791 ns/op            9459 B/op        428 allocs/op
 Benchmark_SerializeSliceValueWithMsgPack-16                20384             61112 ns/op           42178 B/op        158 allocs/op
-Benchmark_SerializeSlicePtrWithMsgPAck-16                  17089             69984 ns/op           44483 B/op        302 allocs/op
+Benchmark_SerializeSlicePtrWithMsgPack-16                  17089             69984 ns/op           44483 B/op        302 allocs/op
 Benchmark_DeserializeSliceValueWithMsgPack-16              10000            109268 ns/op           11770 B/op       1156 allocs/op
 Benchmark_DeserializeSlicePtrWithMsgPack-16                 9813            122801 ns/op           14073 B/op       1300 allocs/op
 PASS
@@ -35,4 +35,24 @@ ok      github.com/yoshidan/pointer-value-comparison    29.760s
 
 ## Conclusion
 * It is better to generate a struct by using a value instead of a pointer.
+* If the element of the slice is a value and you need to loop many times, it is better to make a slice with the element as a pointer.
 * `for i := range value { attr := (&value[i]).Attr }` is better than `for i, v := range value { attr := v.Attr }` when looping through the value slice.
+
+``` 
+    // get value to avoid heap allocation of slice elements.
+    values := repository.FindAll()
+    
+    // only 1 allocation
+    ptrs := make([]*Sample, len(values)
+    
+    // make slice without copy.
+    for i := range values {
+        ptrs[i] = &values[i]
+    }
+    
+    // use ptrs instead of values to avoid copy.
+    UseSlice(ptrs) 
+    UseSlice(ptrs) 
+    UseSlice(ptrs) 
+    UseSlice(ptrs) 
+```

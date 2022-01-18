@@ -290,7 +290,7 @@ func Benchmark_SerializeSliceValueWithMsgPack(b *testing.B) {
 	}
 }
 
-func Benchmark_SerializeSlicePtrWithMsgPAck(b *testing.B) {
+func Benchmark_SerializeSlicePtrWithMsgPack(b *testing.B) {
 	target := NewPtrSampleRepository()
 	var str []byte
 	value, _ := target.FindBySampleId(1)
