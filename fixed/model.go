@@ -1,14 +1,10 @@
-package main
-
-import "time"
+package fixed
 
 type Sample struct {
 	GroupID  int64
 	SampleID int64
 	ItemID   int64
 	Quantity int64
-	Name     string
-	Time     time.Time
 }
 
 //go:noinline
