@@ -11,6 +11,7 @@ type Sample struct {
 	Time     time.Time
 }
 
+//go:noinline
 func FilterValue(sl []Sample) []Sample {
 	v := make([]Sample, 0, len(sl))
 	for _, e := range sl {
@@ -21,6 +22,7 @@ func FilterValue(sl []Sample) []Sample {
 	return v
 }
 
+//go:noinline
 func FilterPtr(sl []*Sample) []*Sample {
 	v := make([]*Sample, 0, len(sl))
 	for _, e := range sl {
@@ -28,5 +30,15 @@ func FilterPtr(sl []*Sample) []*Sample {
 			v = append(v, e)
 		}
 	}
+	return v
+}
+
+//go:noinline
+func JustReturnValue(v []Sample) []Sample {
+	return v
+}
+
+//go:noinline
+func JustReturnPtr(v []*Sample) []*Sample {
 	return v
 }

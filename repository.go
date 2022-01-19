@@ -14,6 +14,7 @@ func NewValueSampleRepository() *ValueSampleRepository {
 	return &ValueSampleRepository{}
 }
 
+//go:noinline
 func (r *ValueSampleRepository) FindByPK(groupID int64, sampleID int64) (Sample, error) {
 	switch [2]int64{groupID, sampleID} {
 	case [2]int64{1, 1}:
@@ -56,6 +57,7 @@ func (r *ValueSampleRepository) FindByPK(groupID int64, sampleID int64) (Sample,
 	return Sample{}, errors.New("invalid Sample ")
 }
 
+//go:noinline
 func (r *ValueSampleRepository) FindBySampleId(groupID int64) ([]Sample, error) {
 	switch [1]int64{groupID} {
 	case [1]int64{1}:
@@ -216,6 +218,7 @@ func NewPtrSampleRepository() *PtrSampleRepository {
 	return &PtrSampleRepository{}
 }
 
+//go:noinline
 func (r *PtrSampleRepository) FindByPK(groupID int64, sampleID int64) (*Sample, error) {
 	switch [2]int64{groupID, sampleID} {
 	case [2]int64{1, 1}:
@@ -258,6 +261,7 @@ func (r *PtrSampleRepository) FindByPK(groupID int64, sampleID int64) (*Sample, 
 	return &Sample{}, errors.New("invalid Sample ")
 }
 
+//go:noinline
 func (r *PtrSampleRepository) FindBySampleId(groupID int64) ([]*Sample, error) {
 	switch [1]int64{groupID} {
 	case [1]int64{1}:

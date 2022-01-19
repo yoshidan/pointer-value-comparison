@@ -6,30 +6,34 @@ goos: darwin
 goarch: amd64
 pkg: github.com/yoshidan/pointer-value-comparison
 cpu: Intel(R) Core(TM) i9-9980HK CPU @ 2.40GHz
-Benchmark_GetUnitValue-16                               16677990                71.56 ns/op            0 B/op          0 allocs/op
-Benchmark_GetUnitPtr-16                                 10463700               110.9 ns/op            80 B/op          1 allocs/op
-Benchmark_GetSliceValue-16                                 92354             12338 ns/op           10880 B/op          1 allocs/op
-Benchmark_GetSlicePtr-16                                   75403             16108 ns/op           12672 B/op        145 allocs/op
-Benchmark_GetSliceValueAndCopy-16                          94179             12559 ns/op           10880 B/op          1 allocs/op
-Benchmark_GetSlicePtrAndCopy-16                            70450             16507 ns/op           12672 B/op        145 allocs/op
-Benchmark_CopySliceValue-16                              6585876               182.2 ns/op             0 B/op          0 allocs/op
-Benchmark_CopySlicePtr-16                               25266490                46.73 ns/op            0 B/op          0 allocs/op
-Benchmark_AvoidSliceValueCopy-16                        16239200                71.31 ns/op            0 B/op          0 allocs/op
-Benchmark_UseSliceValueWithCopy-16                         70276             15208 ns/op           21760 B/op          2 allocs/op
-Benchmark_UseSliceValueWithoutCopy-16                      93792             13149 ns/op           13184 B/op          3 allocs/op
-Benchmark_UseSlicePtr-16                                   72093             16596 ns/op           13824 B/op        146 allocs/op
-Benchmark_SerializeSliceValueWithStandardJson-16           10000            110473 ns/op           25448 B/op        146 allocs/op
-Benchmark_SerializeSlicePtrWithStandardJson-16             10000            111598 ns/op           25448 B/op        146 allocs/op
-Benchmark_SerializeSliceValueWithGoJson-16                 14106             84275 ns/op           25358 B/op        145 allocs/op
-Benchmark_SerializeSlicePtrWithGoJson-16                   10000            103265 ns/op           38484 B/op        290 allocs/op
-Benchmark_DeserializeSliceValueWithStandardJson-16          4538            239224 ns/op            9466 B/op        428 allocs/op
-Benchmark_DeserializeSlicePtrWithStandardJson-16            4887            238791 ns/op            9459 B/op        428 allocs/op
-Benchmark_SerializeSliceValueWithMsgPack-16                20384             61112 ns/op           42178 B/op        158 allocs/op
-Benchmark_SerializeSlicePtrWithMsgPack-16                  17089             69984 ns/op           44483 B/op        302 allocs/op
-Benchmark_DeserializeSliceValueWithMsgPack-16              10000            109268 ns/op           11770 B/op       1156 allocs/op
-Benchmark_DeserializeSlicePtrWithMsgPack-16                 9813            122801 ns/op           14073 B/op       1300 allocs/op
+Benchmark_GetUnitValue-16                               15903512                74.98 ns/op            0 B/op          0 allocs/op
+Benchmark_GetUnitPtr-16                                  9818766               115.0 ns/op            80 B/op          1 allocs/op
+Benchmark_GetSliceValue-16                                101590             11684 ns/op           10880 B/op          1 allocs/op
+Benchmark_GetSlicePtr-16                                   75370             16131 ns/op           12672 B/op        145 allocs/op
+Benchmark_GetSliceValueAndCopy-16                          95856             12119 ns/op           10880 B/op          1 allocs/op
+Benchmark_GetSlicePtrAndCopy-16                            71475             16155 ns/op           12672 B/op        145 allocs/op
+Benchmark_CopySliceValue-16                              6256909               184.6 ns/op             0 B/op          0 allocs/op
+Benchmark_CopySlicePtr-16                               24947664                47.58 ns/op            0 B/op          0 allocs/op
+Benchmark_AvoidSliceValueCopy-16                        16808020                71.06 ns/op            0 B/op          0 allocs/op
+Benchmark_UseSliceValueWithCopy-16                         83845             14609 ns/op           21760 B/op          2 allocs/op
+Benchmark_UseSliceValueWithoutCopy-16                      88630             13133 ns/op           13184 B/op          3 allocs/op
+Benchmark_UseSlicePtr-16                                   73376             16329 ns/op           13824 B/op        146 allocs/op
+Benchmark_JustReturnSliceValue-16                       1000000000               0.9542 ns/op          0 B/op          0 allocs/op
+Benchmark_JustReturnSlicePtr-16                         1000000000               1.180 ns/op           0 B/op          0 allocs/op
+Benchmark_SerializeSliceValueWithStandardJson-16           10000            107812 ns/op           25428 B/op        146 allocs/op
+Benchmark_SerializeSlicePtrWithStandardJson-16             10000            110697 ns/op           25436 B/op        146 allocs/op
+Benchmark_SerializeSliceValueWithGoJson-16                 13528             85189 ns/op           25358 B/op        145 allocs/op
+Benchmark_SerializeSlicePtrWithGoJson-16                    9859            103436 ns/op           38464 B/op        290 allocs/op
+Benchmark_SerializeSliceValueWithMsgPack-16                21544             56125 ns/op           42178 B/op        158 allocs/op
+Benchmark_SerializeSlicePtrWithMsgPack-16                  18205             66775 ns/op           44483 B/op        302 allocs/op
+Benchmark_DeserializeSliceValueWithStandardJson-16          4689            242084 ns/op            9306 B/op        428 allocs/op
+Benchmark_DeserializeSlicePtrWithStandardJson-16            5221            240597 ns/op            9283 B/op        428 allocs/op
+Benchmark_DeserializeSliceValueWithGoJson-16               15034             79477 ns/op           31848 B/op        289 allocs/op
+Benchmark_DeserializeSlicePtrWithGoJson-16                 14714             82108 ns/op           32295 B/op        289 allocs/op
+Benchmark_DeserializeSliceValueWithMsgPack-16              10000            106557 ns/op           11770 B/op       1156 allocs/op
+Benchmark_DeserializeSlicePtrWithMsgPack-16                 9764            117277 ns/op           14073 B/op       1300 allocs/op
 PASS
-ok      github.com/yoshidan/pointer-value-comparison    29.760s
+ok      github.com/yoshidan/pointer-value-comparison    36.140s
 
 ```
 
@@ -52,9 +56,9 @@ ok      github.com/yoshidan/pointer-value-comparison    29.760s
         ptrs[i] = &values[i]
     }
     
-    // Use ptrs instead of values to avoid copy element value.
-    UseSlice(ptrs) 
-    UseSlice(ptrs) 
-    UseSlice(ptrs) 
-    UseSlice(ptrs) 
+    // Use ptrs instead of values to avoid copy element value in loop.
+    ForEachSlice(ptrs) 
+    ForEachSlice(ptrs) 
+    ForEachSlice(ptrs) 
+    ForEachSlice(ptrs) 
 ```
