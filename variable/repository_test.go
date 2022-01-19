@@ -38,7 +38,7 @@ func Benchmark_GetSliceValue(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		value, _ = target.FindBySampleId(1)
 	}
-	if len(value) == 0 {
+	if len(value) != dataLen {
 		b.Error("invalid data")
 	}
 }
@@ -51,7 +51,7 @@ func Benchmark_GetSlicePtr(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		value, _ = target.FindBySampleId(1)
 	}
-	if len(value) == 0 {
+	if len(value) != dataLen {
 		b.Error("invalid data")
 	}
 }
@@ -195,7 +195,7 @@ func Benchmark_JustReturnSliceValue(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		value = JustReturnValue(value)
 	}
-	if len(value) == 0 {
+	if len(value) != dataLen {
 		b.Error("invalid data")
 	}
 }
@@ -207,7 +207,7 @@ func Benchmark_JustReturnSlicePtr(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		value = JustReturnPtr(value)
 	}
-	if len(value) == 0 {
+	if len(value) != dataLen {
 		b.Error("invalid data")
 	}
 }

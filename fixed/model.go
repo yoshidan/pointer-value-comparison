@@ -7,6 +7,8 @@ type Sample struct {
 	Quantity int64
 }
 
+const dataLen = 144
+
 //go:noinline
 func FilterValue(sl []Sample) []Sample {
 	v := make([]Sample, 0, len(sl))

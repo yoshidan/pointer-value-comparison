@@ -10,6 +10,8 @@ type Sample struct {
 	Time     time.Time
 }
 
+const dataLen = 144
+
 //go:noinline
 func FilterValue(sl []Sample) []Sample {
 	v := make([]Sample, 0, len(sl))
