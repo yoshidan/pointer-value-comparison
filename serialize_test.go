@@ -42,7 +42,7 @@ func Benchmark_SerializeSliceValueWithGoJson(b *testing.B) {
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		str, _ = gojson.MarshalNoEscape(value)
+		str, _ = gojson.Marshal(value)
 	}
 	if len(str) == 0 {
 		b.Error("invalid data")
@@ -56,7 +56,7 @@ func Benchmark_SerializeSlicePtrWithGoJson(b *testing.B) {
 
 	for i := 0; i < b.N; i++ {
 		value, _ := target.FindBySampleId(1)
-		str, _ = gojson.MarshalNoEscape(value)
+		str, _ = gojson.Marshal(value)
 	}
 	if len(str) == 0 {
 		b.Error("invalid data")
