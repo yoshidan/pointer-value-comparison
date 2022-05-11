@@ -149,7 +149,7 @@ Benchmark_SliceLoopValueToPtr-16                           21424             529
 ```
 
 ### Benchmark_SliceLoopPtr-16 
-* There are concerns about GC because it is early but has a large heap.
+* There are concerns about GC because it is fast but has a large heap.
 ```go
 func Benchmark_SliceLoopPtr(b *testing.B) {
 	repository := NewPtrSampleRepository()
