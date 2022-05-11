@@ -211,3 +211,45 @@ func Benchmark_JustReturnSlicePtr(b *testing.B) {
 		b.Error("invalid data")
 	}
 }
+
+func Benchmark_SliceLoopPtr(b *testing.B) {
+	repository := NewPtrSampleRepository()
+	var x []*Sample
+	for i := 0; i < b.N; i++ {
+		x, _ = repository.FindBySampleId(1)
+
+		for j := 0; j < 100; j++ {
+			x = FilterPtr(x)
+		}
+	}
+}
+
+func Benchmark_SliceLoopValue(b *testing.B) {
+	repository := NewValueSampleRepository()
+	var x []Sample
+	for i := 0; i < b.N; i++ {
+		x, _ = repository.FindBySampleId(1)
+
+		for j := 0; j < 100; j++ {
+			x = FilterValue(x)
+		}
+	}
+}
+
+func Benchmark_SliceLoopValueToPtr(b *testing.B) {
+	repository := NewValueSampleRepository()
+	var values []Sample
+	for i := 0; i < b.N; i++ {
+		values, _ = repository.FindBySampleId(1)
+
+		// change value -> ptr
+		ptrs := make([]*Sample, len(values))
+		for j := range values {
+			ptrs[j] = &values[j]
+		}
+
+		for j := 0; j < 100; j++ {
+			ptrs = FilterPtr(ptrs)
+		}
+	}
+}
